@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class SnakeMovement : MonoBehaviour
 {
     //managers
@@ -20,7 +20,7 @@ public class SnakeMovement : MonoBehaviour
     public GameObject BodyPrefab; 
 
     //number of body parts
-    public TextMesh PartsAmountTextMesh;
+    public TMP_Text PartsAmountTextMesh;
 
     //private fields
     private float distance;

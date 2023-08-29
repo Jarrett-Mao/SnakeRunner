@@ -83,22 +83,31 @@ public class GameController : MonoBehaviour
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("Snake")){
             Destroy(g);
         }
+
+        
+        SM.SpawnBodyPart();
+        
+        // BM.SetPreviousPosAfterGameover();
+
+        speedAdded = false;
+        SM.speed = 3;
+
+        PlayerPrefs.SetInt("HighScore", HighScore);
+        // BM.SimpleBoxPosition.Clear();
     }
 
-    SM.SpawnBodyPart();
-    
-    BM.SetPreviousPosAfterGameover();
+    public void EnableCG(CanvasGroup cg){
+        cg.alpha = 1;
+        cg.blocksRaycasts = true;
+        cg.interactable = true;
+    }
 
-    speedAdded = false;
-    SM.speed = 3;
-
-    PlayerPrefs.SetInt("HighScore", HighScore);
-    BM.SimpleBoxPosition.Clear();
+    public void DisableCG(CanvasGroup cg){
+        cg.alpha = 0;
+        cg.blocksRaycasts = false;
+        cg.interactable = false;
+    }
 
 }
 
-public void EnableCG(CanvasGroup cg){
-    cg.alpha = 1;
-    cg.blocksRaycasts = true;
-    cg.interactable = true;
-}
+
