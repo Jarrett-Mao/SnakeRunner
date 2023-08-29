@@ -52,6 +52,20 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void SetGame()
+    {
+        //Set the GameState
+        gameState = GameState.GAME;
+
+        //Manage Canvas Groups
+        EnableCG(GAME_CG);
+        DisableCG(MENU_CG);
+        DisableCG(GAMEOVER_CG);
+
+        //Reset score
+        SCORE = 0;
+    }
+
     public void SetMenu(){
         
         gameState = GameState.MENU;
@@ -74,7 +88,7 @@ public class GameController : MonoBehaviour
             Destroy(g);
         }
 
-        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Tag")){
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Bar")){
             Destroy(g);
         }
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("SimpleBox")){
@@ -96,12 +110,14 @@ public class GameController : MonoBehaviour
         // BM.SimpleBoxPosition.Clear();
     }
 
+    //enables menu components
     public void EnableCG(CanvasGroup cg){
         cg.alpha = 1;
         cg.blocksRaycasts = true;
         cg.interactable = true;
     }
 
+    //disables menu components
     public void DisableCG(CanvasGroup cg){
         cg.alpha = 0;
         cg.blocksRaycasts = false;
