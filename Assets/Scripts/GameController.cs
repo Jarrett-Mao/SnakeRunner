@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
         DisableCG(GAMEOVER_CG);
 
         //Reset score
-        SCORE = 0;
+        Score = 0;
     }
 
     public void SetMenu(){
