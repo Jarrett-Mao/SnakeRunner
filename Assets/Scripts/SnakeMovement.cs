@@ -20,7 +20,7 @@ public class SnakeMovement : MonoBehaviour
     public GameObject BodyPrefab; 
 
     //number of body parts
-    public TextMesh PartAmountTextMesh;
+    public TextMesh PartsAmountTextMesh;
 
     //private fields
     private float distance;
@@ -29,7 +29,7 @@ public class SnakeMovement : MonoBehaviour
     private Transform curBodyPart;
     private Transform prevBodyPart;
 
-    private bool firstpart;
+    private bool firstPart;
 
     Vector2 mousePreviousPos;
     Vector2 mouseCurrentPos;
@@ -43,14 +43,14 @@ public class SnakeMovement : MonoBehaviour
         firstPart = true;
 
         for (int i = 0; i < initialAmount; i++){
-            Invoke ("AddBodyPart, 0.1f");
+            Invoke ("AddBodyPart", 0.1f);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameController.gamestate == GameController.GameState.GAME){
+        if (GameController.gameState == GameController.GameState.GAME){
             Move();
 
             //end condition
@@ -58,7 +58,7 @@ public class SnakeMovement : MonoBehaviour
                 GC.SetGameOver();
             }
 
-            if (PartAmountTextMesh != null){
+            if (PartsAmountTextMesh != null){
                 PartsAmountTextMesh.text = transform.childCount + "";
             }
         }
@@ -68,19 +68,19 @@ public class SnakeMovement : MonoBehaviour
         firstPart = true;
 
         for (int i = 0; i < initialAmount; i++){
-            Invoke ("AddBodyPart, 0.1f");
+            Invoke ("AddBodyPart", 0.1f);
         }
     }
 
     public void Move(){
         float curSpeed = speed;
+        float maxX = Camera.main.orthographicSize * Screen.width / Screen.height; //fixed
+
         if(BodyParts.Count > 0){
             BodyParts[0].Translate(Vector2.up * curSpeed * Time.smoothDeltaTime);
 
-            float maxX = Camera.main.orthographicSize * Screen.width / Screen.height;
-
             if(BodyParts.Count > 0){
-                if (BodyParts[0].position > maxX){
+                if (BodyParts[0].position.x > maxX){
                     BodyParts[0].position = new Vector3(maxX - 0.01f, BodyParts[0].position.y, BodyParts[0].position.z);
                 }
                 else if (BodyParts[0].position.x < -maxX){
@@ -96,7 +96,7 @@ public class SnakeMovement : MonoBehaviour
         else if (Input.GetMouseButtonDown(0)){
             if(BodyParts.Count > 0 && Mathf.Abs(BodyParts[0].position.x) < maxX){
                 mouseCurrentPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-                float deltaMousePos = Mathf.Abs(mousePrevious.x - mouseCurrentPos.x);
+                float deltaMousePos = Mathf.Abs(mousePreviousPos.x - mouseCurrentPos.x);
                 float sign = Mathf.Sign(mousePreviousPos.x - mouseCurrentPos.x);
 
                 BodyParts[0].GetComponent<Rigidbody2D>().AddForce(Vector2.right * rotationSpeed * deltaMousePos * - sign);
@@ -122,8 +122,8 @@ public class SnakeMovement : MonoBehaviour
 
             Vector3 pos = curBodyPart.position;
 
-            pos.x = Mathf.Lerp(pos.x, newPos.x, LerpTimeX);
-            pos.y = Mathf.Lerp(pos.y, newPos.y, LerpTimeY);
+            pos.x = Mathf.Lerp(pos.x, newPos.x, lerpTimeX);
+            pos.y = Mathf.Lerp(pos.y, newPos.y, lerpTimeY);
 
             curBodyPart.position = pos;
         }
@@ -134,14 +134,15 @@ public class SnakeMovement : MonoBehaviour
         Transform newPart;
 
         if (firstPart){
-            newPart = (Instantiate(BodyPrefab, new Vector3(0,0,0), Quarternion.identity) as GameObject).transform;
+            newPart = (Instantiate(BodyPrefab, new Vector3(0,0,0), Quaternion.identity) as GameObject).transform;
 
-            PartAmountTextMesh.transform.parent = newPart.position + new Vector3 (0, 0.5f, 0);
+            PartsAmountTextMesh.transform.parent.position = newPart.position + new Vector3 (0, 0.5f, 0); //fixed
 
             firstPart = false;
         }
         else {
-            newPart = (Instantiate(BodyPrefab, BodyParts[BodyParts.Count - 1].position, BodyParts[BodyParts.Count - 1].rotation as GameObject).transform);
+            //creates a new instance of body parts and sets position and rotation to the last body part
+            newPart = Instantiate(BodyPrefab, BodyParts[BodyParts.Count - 1].position, BodyParts[BodyParts.Count - 1].rotation).transform; //fixed
             newPart.SetParent(transform);
             BodyParts.Add(newPart);
         }
