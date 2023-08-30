@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -18,13 +19,13 @@ public class GameController : MonoBehaviour
     public CanvasGroup GAMEOVER_CG;
     
     //score management
-    public Text ScoreText;
-    public Text MenuScoreText;
-    public Text BestScoreText;
+    public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI MenuScoreText;
+    public TextMeshProUGUI BestScoreText;
     public static int Score;
     public static int HighScore;
 
-    //bool
+    //bools
     bool speedAdded;
     void Start()
     {
@@ -101,13 +102,13 @@ public class GameController : MonoBehaviour
         
         SM.SpawnBodyPart();
         
-        // BM.SetPreviousPosAfterGameover();
+        BM.SetPreviousPosAfterGameover();
 
         speedAdded = false;
         SM.speed = 3;
 
         PlayerPrefs.SetInt("HighScore", HighScore);
-        // BM.SimpleBoxPosition.Clear();
+        BM.SimpleBoxPositions.Clear();
     }
 
     //enables menu components
