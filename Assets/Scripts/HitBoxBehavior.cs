@@ -39,6 +39,8 @@ public class HitBoxBehavior : MonoBehaviour
             if (SM.BodyParts.Count > 0) // Check if there are elements in the list
             {
                 SM.BodyParts.Remove(SM.BodyParts[0]);
+                // SM.BodyParts[0].rotation = Quaternion.Euler(0, 0, 90); // Rotate 90 degrees around the Z-axis (pointing upwards)
+                // SM.BodyParts[0].Translate(Vector2.up * 1 * Time.smoothDeltaTime);
             }
             else
             {

@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodPrefab: {fileID: 6884240312225155684, guid: cc672e37c283206499284ad3d774fa1d, type: 3}
-  appearanceFrequency: 96
+  appearanceFrequency: 80
   timeBetweenFoodSpawn: 1
 --- !u!1 &345860145
 GameObject:
@@ -6872,7 +6872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2110388147
 MonoBehaviour:
   m_ObjectHideFlags: 0

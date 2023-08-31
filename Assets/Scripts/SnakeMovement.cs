@@ -209,11 +209,6 @@ public class SnakeMovement : MonoBehaviour {
         {
             Debug.Log("Index: " + i + ", Position: " + BodyParts[i].position);
         }
-
-        // for (int i = 0; i < BodyParts.Count; i++)
-        // {
-        //     Debug.Log("Index: " + i + ", Position: " + BodyParts[i].position);
-        // }
     }
 
 }
