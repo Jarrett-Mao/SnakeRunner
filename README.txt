@@ -1,4 +1,4 @@
-Known Glitches:
+Known Issues:
 A.
 1. blocks occasionally have an issue with their hitbox persisting causing you to lose when you shouldn't
 2. snake occasionally can phase through the block usually at higher numbers
