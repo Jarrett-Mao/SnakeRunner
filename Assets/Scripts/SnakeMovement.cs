@@ -94,9 +94,18 @@ public class SnakeMovement : MonoBehaviour {
 		float curSpeed = speed;
 
 		//Always move the body Up
-		if(BodyParts.Count > 0)
-			BodyParts[0].Translate(Vector2.up * curSpeed * Time.smoothDeltaTime);
+		if(BodyParts.Count > 0){
+			for (int i = 1; i < BodyParts.Count; i++)
+            {
+                BodyParts[i].GetComponent<Collider2D>().enabled = false;
+            }
 
+            // Move the new head
+            BodyParts[0].Translate(Vector2.up * curSpeed * Time.smoothDeltaTime);
+
+            // Enable collider of the head
+            BodyParts[0].GetComponent<Collider2D>().enabled = true;
+        }
 
 		//check if we are still on screen
 		float maxX = Camera.main.orthographicSize * Screen.width / Screen.height;
