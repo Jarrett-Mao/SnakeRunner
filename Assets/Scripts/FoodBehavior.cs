@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FoodBehavior : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class FoodBehavior : MonoBehaviour
         SM = GameObject.FindGameObjectWithTag("SnakeManager").GetComponent<SnakeMovement>();
 
         foodAmount = Random.Range(1, 10);
-        transform.GetComponentInChildren<TextMesh>().text = "" + foodAmount;
+        transform.GetComponentInChildren<TextMeshPro>().text = "" + foodAmount.ToString(); //fixed
     }
 
     // Update is called once per frame
