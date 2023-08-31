@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
 
     //bools
     bool speedAdded;
+    
     void Start()
     {
         SetMenu();

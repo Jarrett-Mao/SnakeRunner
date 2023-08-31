@@ -5362,7 +5362,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d3d765c3ea2963540a8dd343e74563f8, type: 2}
+  - {fileID: 2100000, guid: 0748c48a8e995d340bef3fd515a7a30c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5535,7 +5535,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 0.73, y: 0.76}
   m_EdgeRadius: 0
 --- !u!114 &2179183822618046592
 MonoBehaviour:
