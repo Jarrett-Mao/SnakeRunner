@@ -11,3 +11,4 @@ C.
 1. Visual glitches for the color of the snake when the reverse and ghost power up are both active
 2. If adding new body parts while being powered up they instantiate with the default color not the power uped color
 3. there is nothing preventing power ups spawning on top of the player
+4. because the collider for non-head body parts are turned off they tend to stack very closely with one another
