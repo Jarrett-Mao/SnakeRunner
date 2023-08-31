@@ -189,6 +189,9 @@ public class SnakeMovement : MonoBehaviour {
             // Set this part as the parent of the Text Mesh
             PartsAmountTextMesh.transform.SetParent(newPart, false);
 
+            // Reset local scale of the Text Mesh
+            PartsAmountTextMesh.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f); 
+
             // Place it correctly relative to the newPart
             PartsAmountTextMesh.transform.localPosition = new Vector3(0, 0.5f, 0);
 
