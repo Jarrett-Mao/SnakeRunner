@@ -17,6 +17,7 @@ public class SnakeMovement : MonoBehaviour {
 	public float rotationSpeed = 50;
 	public float LerpTimeX;
 	public float LerpTimeY;
+	public bool reversedControls = false;
 
 	[Header("Snake Head Prefab")]
 	public GameObject BodyPrefab;
@@ -33,7 +34,7 @@ public class SnakeMovement : MonoBehaviour {
 
 	private bool firstPart;
 
-	private bool reversedControls = false;
+	private bool ghostOn = false;
 
 	[Header("Mouse Control Variables")]
 	Vector2 mousePreviousPos;
@@ -44,10 +45,7 @@ public class SnakeMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-
 		SpawnBodyPart();
-
 	}
 
 	public void SpawnBodyPart()
@@ -112,7 +110,10 @@ public class SnakeMovement : MonoBehaviour {
             BodyParts[0].Translate(Vector2.up * curSpeed * Time.smoothDeltaTime);
 
             // Enable collider of the head
-            BodyParts[0].GetComponent<Collider2D>().enabled = true;
+			if (!ghostOn){
+				BodyParts[0].GetComponent<Collider2D>().enabled = true;
+			}
+            
         }
 
 		//check if we are still on screen
@@ -311,17 +312,60 @@ public class SnakeMovement : MonoBehaviour {
     }
 
 	public void ReverseActivate(float duration){
-		// reversedControls = enable;
-
-		Debug.Log("working");
-
 		StartCoroutine(ReverseControls(duration));
 	}
 
 	private IEnumerator ReverseControls(float duration){
 		reversedControls = true;
+		//change to green
+		foreach(Transform bodyPart in BodyParts){
+			Material bodyPartMaterial = bodyPart.GetComponent<Renderer>().material;
+			bodyPartMaterial.color = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+		}
 		yield return new WaitForSeconds(duration);
+
+		//resets changes 
 		reversedControls = false;
+		foreach(Transform bodyPart in BodyParts){
+			Material bodyPartMaterial = bodyPart.GetComponent<Renderer>().material;
+			bodyPartMaterial.color = new Color(2.0f, 2.0f, 2.0f, 1.0f);
+		}
+	}
+
+	public void ActivateGhost(float duration, float boost){
+		StartCoroutine(GhostMode(duration, boost));
+	}
+
+	private IEnumerator GhostMode(float duration, float boost){
+		ghostOn = true;
+
+		//reduce the alpha 
+		foreach(Transform bodyPart in BodyParts){
+			Material bodyPartMaterial = bodyPart.GetComponent<Renderer>().material;
+			//reduces alpha by half
+			bodyPartMaterial.color = new Color(bodyPartMaterial.color.r, bodyPartMaterial.color.g, bodyPartMaterial.color.b, 0.5f);
+		}
+
+		speed += boost;
+		BodyParts[0].GetComponent<Collider2D>().enabled = false;
+		yield return new WaitForSeconds(duration);
+		ghostOn = false;
+		foreach (Transform bodyPart in BodyParts)
+        {
+			Material bodyPartMaterial = bodyPart.GetComponent<Renderer>().material;
+            bodyPartMaterial.color = new Color(bodyPartMaterial.color.r, bodyPartMaterial.color.g, bodyPartMaterial.color.b, 2.0f);
+        }
+		speed -= boost;
+	}
+
+	public void TurnOffPowerUps(){
+		StopAllCoroutines();
+		//resets changes 
+		reversedControls = false;
+		foreach(Transform bodyPart in BodyParts){
+			Material bodyPartMaterial = bodyPart.GetComponent<Renderer>().material;
+			bodyPartMaterial.color = new Color(2.0f, 2.0f, 2.0f, 1.0f);
+		}
 	}
 
 }

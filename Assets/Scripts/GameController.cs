@@ -102,6 +102,8 @@ public class GameController : MonoBehaviour
             Destroy(g);
         }
 
+        //prevents glitches when dying in reverse mode
+        SM.TurnOffPowerUps();
         
         SM.SpawnBodyPart();
         
@@ -112,6 +114,7 @@ public class GameController : MonoBehaviour
 
         PlayerPrefs.SetInt("HighScore", HighScore);
         BM.SimpleBoxPositions.Clear();
+
     }
 
     //enables menu components

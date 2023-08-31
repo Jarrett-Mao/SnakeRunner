@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerManager : MonoBehaviour
+public class GhostManager : MonoBehaviour
 {
     //snake manager
+    [SerializeField]
     SnakeMovement SM;
 
     //food variables
-    public GameObject FoodPrefab;
+    [SerializeField]
+    GameObject GhostPrefab;
     public int appearanceFrequency;
 
     //time to spawn management
-    public float timeBetweenFoodSpawn;
+    public float timeBetweenGhostSpawn;
     private float thisTime;
     
     // Start is called before the first frame update
     void Start()
     {
-        SM = GameObject.FindGameObjectWithTag("SnakeManager").GetComponent<SnakeMovement>();
-
         SpawnFood();
     }
 
@@ -27,7 +27,7 @@ public class PowerManager : MonoBehaviour
     void Update()
     {
         if(GameController.gameState == GameController.GameState.GAME){
-            if (thisTime < timeBetweenFoodSpawn){
+            if (thisTime < timeBetweenGhostSpawn){
                 thisTime += Time.deltaTime;
             }
             else {
@@ -63,7 +63,7 @@ public class PowerManager : MonoBehaviour
             GameObject boxInstance;
             
             if (number == 1){
-                boxInstance = Instantiate(FoodPrefab, spawnPos, Quaternion.identity, transform);
+                boxInstance = Instantiate(GhostPrefab, spawnPos, Quaternion.identity, transform);
             }
         }
     }

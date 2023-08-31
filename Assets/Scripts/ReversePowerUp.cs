@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class ReversePowerUp : MonoBehaviour
 {
-    public float powerUpDuration = 3;
+    public float powerUpDuration = 10;
 
     SnakeMovement SM;
 
     private void OnTriggerEnter2D(Collider2D collision){
         // ApplyPowerUp(collision.gameObject);
-        SM.ReverseActivate(powerUpDuration);
+        
+        //prevents stacking and instead refreshes time
+        if (!SM.reversedControls){
+            SM.ReverseActivate(powerUpDuration);
+        }
+        else {
+            SM.TurnOffPowerUps();
+            SM.ReverseActivate(powerUpDuration);
+        }
+        
         Destroy(this.gameObject);
     }
 
