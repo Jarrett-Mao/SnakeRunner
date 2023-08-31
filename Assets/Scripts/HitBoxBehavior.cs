@@ -36,8 +36,15 @@ public class HitBoxBehavior : MonoBehaviour
             collision.transform.GetComponent<AutoDestroy>().UpdateText();
 
             collision.transform.GetComponent<AutoDestroy>().SetBoxColor();
-
-            SM.BodyParts.Remove(SM.BodyParts[0]);
+            if (SM.BodyParts.Count > 0) // Check if there are elements in the list
+            {
+                SM.BodyParts.Remove(SM.BodyParts[0]);
+            }
+            else
+            {
+                Debug.LogWarning("No body parts to remove.");
+            }
+            // SM.BodyParts.Remove(SM.BodyParts[0]);
         }
         else if (collision.transform.tag == "SimpleBox" && transform == SM.BodyParts[0]){
             SM.SnakeParticle.Stop();

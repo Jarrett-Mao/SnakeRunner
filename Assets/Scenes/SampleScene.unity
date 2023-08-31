@@ -6058,8 +6058,8 @@ MonoBehaviour:
   initialAmount: 4
   speed: 3
   rotationSpeed: 3500
-  lerpTimeX: 0.2
-  lerpTimeY: 0.125
+  LerpTimeX: 0
+  LerpTimeY: 0
   BodyPrefab: {fileID: 3546014045481271728, guid: d06db8c4ce28ac64daa8c7ef6fad265b, type: 3}
   PartsAmountTextMesh: {fileID: 1209699083}
   SnakeParticle: {fileID: 585595840}
@@ -6887,7 +6887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SM: {fileID: 1209665207}
   distanceSnakeBarrier: 10
-  BlockPrefab: {fileID: 9049149360705140705, guid: 336ba9f6ad260cc4baa53b24310f84d9, type: 3}
+  BlockPrefab: {fileID: 5250315278778697562, guid: 336ba9f6ad260cc4baa53b24310f84d9, type: 3}
   minSpawnTime: 0.3
   maxSpawnTime: 1
   minSpawnDistance: 20
