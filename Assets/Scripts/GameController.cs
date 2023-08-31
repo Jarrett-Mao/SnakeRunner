@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour
 
         speedAdded = false;
         HighScore = PlayerPrefs.GetInt("HighScore");
+        BestScoreText.text = "Highscore: " + HighScore;
+        Debug.Log("HighScore: " + HighScore);
     }
 
     void Update()
@@ -44,7 +46,7 @@ public class GameController : MonoBehaviour
         if (Score > HighScore){
             HighScore = Score;
 
-            BestScoreText.text = Score + "";
+            BestScoreText.text = HighScore + "";
 
             if(!speedAdded && Score > 150){
                 SM.speed++;

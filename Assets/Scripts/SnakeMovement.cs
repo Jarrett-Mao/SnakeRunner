@@ -217,10 +217,10 @@ public class SnakeMovement : MonoBehaviour {
         BodyParts.Add(newPart);
 
         //print out positions of the body parts
-        for (int i = 0; i < BodyParts.Count; i++)
-        {
-            Debug.Log("Index: " + i + ", Position: " + BodyParts[i].position);
-        }
+        // for (int i = 0; i < BodyParts.Count; i++)
+        // {
+        //     Debug.Log("Index: " + i + ", Position: " + BodyParts[i].position);
+        // }
     }
 
 }
