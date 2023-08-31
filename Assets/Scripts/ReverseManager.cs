@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodManager : MonoBehaviour
+public class ReverseManager : MonoBehaviour
 {
     //snake manager
     [SerializeField]
@@ -10,11 +10,11 @@ public class FoodManager : MonoBehaviour
 
     //food variables
     [SerializeField]
-    GameObject FoodPrefab;
+    GameObject ReversePrefab;
     public int appearanceFrequency;
 
     //time to spawn management
-    public float timeBetweenFoodSpawn;
+    public float timeBetweenReverseSpawn;
     private float thisTime;
     
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class FoodManager : MonoBehaviour
     void Update()
     {
         if(GameController.gameState == GameController.GameState.GAME){
-            if (thisTime < timeBetweenFoodSpawn){
+            if (thisTime < timeBetweenReverseSpawn){
                 thisTime += Time.deltaTime;
             }
             else {
@@ -63,7 +63,7 @@ public class FoodManager : MonoBehaviour
             GameObject boxInstance;
             
             if (number == 1){
-                boxInstance = Instantiate(FoodPrefab, spawnPos, Quaternion.identity, transform);
+                boxInstance = Instantiate(ReversePrefab, spawnPos, Quaternion.identity, transform);
             }
         }
     }

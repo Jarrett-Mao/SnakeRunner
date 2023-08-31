@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class ReversePowerUp : MonoBehaviour
 {
-    [SerializeField] 
-    float powerUpDuration;
+    public float powerUpDuration = 3;
 
-    [SerializeField]
     SnakeMovement SM;
 
     private void OnTriggerEnter2D(Collider2D collision){
@@ -31,7 +29,7 @@ public class ReversePowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SM = GameObject.FindGameObjectWithTag("SnakeManager").GetComponent<SnakeMovement>();
     }
 
     // Update is called once per frame

@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodManager : MonoBehaviour
+public class PowerManager : MonoBehaviour
 {
     //snake manager
-    [SerializeField]
     SnakeMovement SM;
 
     //food variables
-    [SerializeField]
-    GameObject FoodPrefab;
+    public GameObject FoodPrefab;
     public int appearanceFrequency;
 
     //time to spawn management
@@ -20,6 +18,8 @@ public class FoodManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SM = GameObject.FindGameObjectWithTag("SnakeManager").GetComponent<SnakeMovement>();
+
         SpawnFood();
     }
 

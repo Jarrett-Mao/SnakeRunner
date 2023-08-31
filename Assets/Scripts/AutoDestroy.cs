@@ -20,8 +20,8 @@ public class AutoDestroy : MonoBehaviour
     public bool dontMove;
 
     void SetBoxSize(){
-        float x;
-        float y;
+        // float x;
+        // float y;
 
         transform.localScale *= ((float)Screen.width / (float)Screen.height / (9.0f/16.0f));
     }
