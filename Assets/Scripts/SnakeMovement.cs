@@ -110,6 +110,7 @@ public class SnakeMovement : MonoBehaviour {
             BodyParts[0].Translate(Vector2.up * curSpeed * Time.smoothDeltaTime);
 
             // Enable collider of the head
+			//checks if ghost mode is on 
 			if (!ghostOn){
 				BodyParts[0].GetComponent<Collider2D>().enabled = true;
 			}
@@ -201,7 +202,9 @@ public class SnakeMovement : MonoBehaviour {
             BodyParts[0].Translate(Vector2.up * curSpeed * Time.smoothDeltaTime);
 
             // Enable collider of the head
-            BodyParts[0].GetComponent<Collider2D>().enabled = true;
+			if (!ghostOn){
+				BodyParts[0].GetComponent<Collider2D>().enabled = true;
+			}
         }
 
 		//check if we are still on screen
