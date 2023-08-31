@@ -309,27 +309,26 @@ public class SnakeMovement : MonoBehaviour {
 
 
 		//Move the other body parts depending on the Head, that's why we start the loop at 1
-		for (int i = 1; i < BodyParts.Count; i++)
-		{
-			curBodyPart = BodyParts[i];
-			prevBodyPart = BodyParts[i - 1];
+		for (int i = BodyParts.Count - 1; i > 0; i--)
+        {
+            curBodyPart = BodyParts[i];
+            prevBodyPart = BodyParts[i - 1];
 
-			distance = Vector3.Distance(prevBodyPart.position, curBodyPart.position);
+            Vector3 newPos = prevBodyPart.position;
+            // newPos.z = BodyParts[0].position.z;
 
-			Vector3 newPos = prevBodyPart.position;
+            // Vector3 pos = curBodyPart.position;
 
-			newPos.z = BodyParts[0].position.z;
+            // pos.x = Mathf.Lerp(pos.x, newPos.x, LerpTimeX);
+            // pos.y = Mathf.Lerp(pos.y, newPos.y, LerpTimeY);
+            // curBodyPart.position = pos;
 
-			//Try 2 Lerps, one on the x pos and one on the Y
-			Vector3 pos = curBodyPart.position;
+            Vector3 targetPosition = newPos;
+            targetPosition.z = curBodyPart.position.z;
 
-			pos.x = Mathf.Lerp(pos.x, newPos.x, LerpTimeX);
-			pos.y = Mathf.Lerp(pos.y, newPos.y, LerpTimeY);
+            curBodyPart.position = Vector3.MoveTowards(curBodyPart.position, targetPosition, Time.deltaTime * curSpeed);
+        }
 
-			curBodyPart.position = pos;
-
-
-		}
 	}
 
     public void AddBodyPart()
