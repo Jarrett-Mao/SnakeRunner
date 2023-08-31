@@ -27,6 +27,7 @@ public class FoodBehavior : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
+        SM.SpawnBodyPart(foodAmount);
         Destroy(this.gameObject);
     }
 }
